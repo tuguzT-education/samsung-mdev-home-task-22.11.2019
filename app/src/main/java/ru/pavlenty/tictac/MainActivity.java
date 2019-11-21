@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         alert.setTitle( "This is fun" );
         alert.setMessage( "Play again?" );
         PlayDialog playAgain = new PlayDialog( );
-        alert.setPositiveButton( "YES", (DialogInterface.OnClickListener) playAgain);
+        alert.setPositiveButton( "YES", playAgain);
         alert.setNegativeButton( "NO", playAgain );
         alert.show( );
     }

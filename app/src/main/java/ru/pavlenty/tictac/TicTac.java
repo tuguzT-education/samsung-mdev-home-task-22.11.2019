@@ -4,16 +4,13 @@ public class TicTac {
 
         public static final int SIDE = 3;
         private int turn;
-        private int [][] game;
+        private int [][] game = new int[SIDE][SIDE];
 
         public TicTac( ) {
-            // инициализация game?
-
             resetGame( );
         }
 
         public int play( int row, int col ) {
-            int currentTurn = turn;
             if( row >= 0 && col >= 0 && row < SIDE && col < SIDE
                     && game[row][col] == 0 ) {
                 game[row][col] = turn;
@@ -21,10 +18,7 @@ public class TicTac {
                     turn = 2;
                 else
                     turn = 1;
-
-                // что-то нужно вернуть?
-                return 0;
-
+                return turn;
             }
             else
                 return 0;
@@ -71,23 +65,25 @@ public class TicTac {
         }
 
         public boolean canNotPlay( ) {
-            boolean result = false;
+            boolean result = true;
             for (int row = 0; row < SIDE; row++)
                 for( int col = 0; col < SIDE; col++ )
                     if ( game[row][col] == 0 )
                         result = false;
-                    // что-то нужно вернуть?
-            return false;
+            return result;
 
         }
 
         public boolean isGameOver( ) {
-            // логика для gameover??
+            if (checkColumns( ) != 0 || checkDiagonals( ) != 0 || checkRows( ) != 0 || canNotPlay( ))
+                return true;
             return false;
         }
 
         public void resetGame( ) {
-            // логика для сброса
+            for (int i = 0; i < SIDE; i++)
+                for (int j = 0; j < SIDE; j++)
+                    game[i][j] = 0;
             turn = 1;
         }
 
